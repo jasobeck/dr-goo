@@ -3,9 +3,9 @@ package org.gooteam.listener
 import org.gooteam.event.GooMessage
 
 /**
- * Listener which delegates incoming events to downstream listeners
+ * Listener which delegates incoming events to downstream listeners based on message start
  */
-class GooCentral(
+class GooCentral @JvmOverloads constructor (
     private val listenerMap: MutableMap<String?, MutableSet<GooMessageListener>> = mutableMapOf()
 ) : GooMessageListener {
     // implement listener interface? or: use central?
