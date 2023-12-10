@@ -46,5 +46,6 @@ class Doc @JvmOverloads constructor(
     override fun onMessageReceived(event: MessageReceivedEvent) {
         val message = GooMessage(event.message.contentDisplay, event)
         messageHandler.onMessage(message)
+
     }
 }
