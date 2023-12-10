@@ -16,6 +16,7 @@ dependencies {
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
 
     implementation("net.dv8tion:JDA:5.0.0-beta.18")
+    implementation("ch.qos.logback:logback-classic:1.2.8") // logging
     implementation(kotlin("stdlib-jdk8"))
 }
 
