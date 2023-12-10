@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.InvalidTokenException
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.requests.GatewayIntent
 
 // wrapper for the bot itself
 class Doc(
@@ -19,6 +20,8 @@ class Doc(
         builder.addEventListeners(this)
         builder.setActivity(Activity.customStatus("gooning"))
 
+        builder.enableIntents(GatewayIntent.MESSAGE_CONTENT)
+
         try {
             bot = builder.build()
 
@@ -30,6 +33,6 @@ class Doc(
     }
 
     override fun onMessageReceived(event: MessageReceivedEvent) {
-        print("hello: ${event.message.contentRaw}")
+        println("msg: ${event.message.contentStripped}")
     }
 }
