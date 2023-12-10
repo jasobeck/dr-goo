@@ -11,7 +11,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooMessageListener;
 
-
 public class Introduction implements GooMessageListener{
 
     @Override
