@@ -23,6 +23,6 @@ public class Introduction implements GooMessageListener{
         String nickname = member.getNickname();
         Role role = event.getGuild().getPublicRole();
         TextChannel textChannel = event.getChannel().asTextChannel();
-        textChannel.sendMessage("kill yourself" + " " + nickname).queue();
+        textChannel.sendMessage("hi " + nickname + ". im dr goo").queue();
     }
 }
