@@ -25,7 +25,7 @@ class Doc @JvmOverloads constructor(
     init {
         val builder = JDABuilder.createDefault(token)
         builder.addEventListeners(this)
-        builder.setActivity(Activity.customStatus("dr goo metamorphosis"))
+        builder.setActivity(Activity.customStatus("gooing off"))
 
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT)
 
