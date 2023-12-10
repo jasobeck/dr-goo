@@ -20,5 +20,6 @@ public class Goo {
         doc.registerMessageListener(PREFIX, rootCommand);
         doc.registerMessageListener(null, new DebugMessageLogger());
         doc.registerMessageListener(PREFIX, new Introduction());
+        doc.registerMessageListener(PREFIX + " penisperson", new SecretSauce());
     }
 }
