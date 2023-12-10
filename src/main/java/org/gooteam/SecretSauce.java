@@ -11,8 +11,8 @@ public class SecretSauce implements GooMessageListener {
     public void onMessage(@NotNull GooMessage message) {
         final MessageReceivedEvent event = message.getEvent();
         String thehunger;
-        String resultA = "poots softly";
-        String resultB = "hnnng";
+        String resultA = "*poots softly*";
+        String resultB = "*cums and dies*";
         double randomNumber = Math.random();
         if(randomNumber > 0.5){
             thehunger = resultA;
@@ -21,7 +21,7 @@ public class SecretSauce implements GooMessageListener {
             thehunger = resultB;
         }
         TextChannel pissbaby = event.getChannel().asTextChannel();
-        pissbaby.sendMessage(thehunger).queue();
+        pissbaby.sendMessage(thehunger + "\n (Your conversation with Dr. Goo appears to be going nowhere.)").queue();
 
     }
 }
