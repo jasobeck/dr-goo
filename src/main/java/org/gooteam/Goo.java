@@ -1,8 +1,6 @@
 package org.gooteam;
 
-import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooCentral;
-import org.gooteam.listener.GooMessageListener;
 import org.gooteam.listener.debug.DebugMessageLogger;
 
 public class Goo {
