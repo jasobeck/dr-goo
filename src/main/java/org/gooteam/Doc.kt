@@ -39,6 +39,11 @@ class Doc @JvmOverloads constructor(
         }
     }
 
+    /**
+     * Registers a listener - wraps GooCentral instance.
+     * @param prefix - prefix to listen for - if null, receives all messages.
+     * @param listener - the listener which will receive messages.
+     */
     fun registerMessageListener(prefix: String?, listener: GooMessageListener) {
         messageHandler.registerListener(listener, prefix)
     }
