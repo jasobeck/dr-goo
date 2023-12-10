@@ -14,18 +14,15 @@ import org.jetbrains.annotations.NotNull;
 public class Introduction implements GooMessageListener{
 
     @Override
-    public Unit onMessage(GooMessage message) {
-        final MessageReceivedEvent event = message.event;
-        if (event.getAuthor().isBot()) return Unit.INSTANCE;
+    public void onMessage(GooMessage message) {
+        final MessageReceivedEvent event = message.getEvent();
+        if (event.getAuthor().isBot()) return;
         User author = event.getAuthor();
-        Message message = event.getMessage();
-        String content = message.getContentRaw();
         MessageChannel channel = event.getChannel();
         Member member = event.getMember();
         String nickname = member.getNickname();
         Role role = event.getGuild().getPublicRole();
-        TextChannel textChannel = event.getGuild().getTextChannelsByName(String.valueOf(channel), true).get(0);
-        textChannel.sendMessage("hi oomphie").queue();
-        return Unit.INSTANCE;
+        TextChannel textChannel = event.getChannel().asTextChannel();
+        textChannel.sendMessage("kill yourself" + " " + nickname).queue();
     }
 }
