@@ -22,5 +22,8 @@ public class Goo {
         doc.registerMessageListener(null, new DebugMessageLogger());
         doc.registerMessageListener(PREFIX, new Introduction());
         doc.registerMessageListener("hey dr goo check balance", new CheckGooBalance(balanceRepo));
+        doc.registerMessageListener("die dr goo", new SecretSauce());
+        doc.registerMessageListener("dr goo fortune", new FortuneTell());
+
     }
 }
