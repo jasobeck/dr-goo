@@ -6,6 +6,8 @@ import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooMessageListener;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Random;
+
 public class FortuneTell implements GooMessageListener {
     @Override
     public void onMessage(@NotNull GooMessage message) {
@@ -24,16 +26,18 @@ public class FortuneTell implements GooMessageListener {
                 "IMMINENT DEMISE",
                 "DISASTER",
                 "BAD LUCK",
-                "NO LUCK",
+                "MIXED LUCK",
                 "GOOD LUCK",
                 "GREAT FORTUNE!",
-                "PERFECT ALIGNMENT",
+                "PERFECT ALIGNMENT \uD83D\uDC7C",
         };
 
         String[] FailureString = {
                 "*Unable to read the stars at this time!*",
                 "`ERR_GOD_NOT_RESOLVED`",
-                "*Future obscured by mass death, try again!",
+                "*Your prayer was absorbed by the darkness...*",
+                "*But the future refused to change...*",
+                "*Your prayers fall on deaf ears...*",
         };
 
         double FortuneFailChance = Math.random();
@@ -43,7 +47,9 @@ public class FortuneTell implements GooMessageListener {
             ResultMessage = FailureString[FailureRoll];
         }
         else{
-            int FortuneRoll = (int) Math.floor(Math.random() * 7);
+            Random Gaussian = new Random();
+
+            int FortuneRoll = (int) Math.clamp(Math.floor(Gaussian.nextGaussian() + 3), 0, 6);
             ResultMessage = FortuneString[FortuneRoll];
         }
         int FlavorRoll = (int) Math.floor(Math.random() * 3);
