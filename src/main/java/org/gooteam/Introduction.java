@@ -10,7 +10,7 @@ import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooMessageListener;
-import org.jetbrains.annotations.NotNull;
+
 public class Introduction implements GooMessageListener{
 
     @Override
@@ -23,6 +23,10 @@ public class Introduction implements GooMessageListener{
         String nickname = member.getNickname();
         Role role = event.getGuild().getPublicRole();
         TextChannel textChannel = event.getChannel().asTextChannel();
-        textChannel.sendMessage("hi " + nickname + ". im dr goo").queue();
+        if (nickname == null) {
+            textChannel.sendMessage("hi " + author.getName() + ". im dr goo").queue();
+        } else {
+            textChannel.sendMessage("hi " + nickname + ". im dr goo").queue();
+        }
     }
 }
