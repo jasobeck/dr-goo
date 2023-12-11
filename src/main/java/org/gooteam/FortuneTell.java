@@ -11,18 +11,17 @@ public class FortuneTell implements GooMessageListener {
     @Override
     public void onMessage(@NotNull GooMessage message) {
         final MessageReceivedEvent event = message.getEvent();
-        String FlavorMessage;
-        String FortuneMessage;
 
-        String[] FlavorText = {
+        String FlavorMessage;
+        String ResultMessage;
+
+        String[] FlavorString = {
                 "*Dr Goo farts!*",
                 "*Dr Goo shids!*",
                 "*Dr Goo sharts!*",
         };
 
-        int FlavorRoll = (int) Math.round(Math.random() * 2);
-        FlavorMessage = FlavorText[FlavorRoll];
-        String[] Fortunes = {
+        String[] FortuneString = {
                 "IMMINENT DEMISE",
                 "DISASTER",
                 "BAD LUCK",
@@ -32,11 +31,27 @@ public class FortuneTell implements GooMessageListener {
                 "PERFECT ALIGNMENT",
         };
 
-        //double value = nextGaussian();
-        int FortuneRoll = (int) Math.round(Math.random() * 6);
-        FortuneMessage = Fortunes[FortuneRoll];
+        String[] FailureString = {
+                "Fortune telling failed! Fuck!",
+                "Epic Fail!",
+                "EPIC FAIL!!!",
+        };
+
+        double FortuneFailChance = Math.random();
+
+        if(FortuneFailChance < 0.3) {
+            int FailureRoll = (int) Math.round(Math.random() * 2);
+            ResultMessage = FailureString[FailureRoll];
+        }
+        else{
+            int FortuneRoll = (int) Math.round(Math.random() * 6);
+            ResultMessage = FortuneString[FortuneRoll];
+        }
+        int FlavorRoll = (int) Math.round(Math.random() * 2);
+        FlavorMessage = FlavorString[FlavorRoll];
+
         TextChannel ThisChannel = event.getChannel().asTextChannel();
-        ThisChannel.sendMessage(FlavorMessage + " Your fortune:" + FortuneMessage).queue();
+        ThisChannel.sendMessage(FlavorMessage + " Your fortune:" + ResultMessage).queue();
 
     }
 }
