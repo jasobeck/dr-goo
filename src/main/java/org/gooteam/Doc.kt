@@ -26,7 +26,6 @@ class Doc @JvmOverloads constructor(
         val builder = JDABuilder.createDefault(token)
         builder.addEventListeners(this)
         builder.setActivity(Activity.customStatus("gooing off"))
-
         builder.enableIntents(GatewayIntent.MESSAGE_CONTENT)
 
         try {
