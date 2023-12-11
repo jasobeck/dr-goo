@@ -5,7 +5,6 @@ import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooMessageListener;
 import org.jetbrains.annotations.NotNull;
-import java.util.Random;
 
 public class FortuneTell implements GooMessageListener {
     @Override
@@ -40,15 +39,14 @@ public class FortuneTell implements GooMessageListener {
         double FortuneFailChance = Math.random();
 
         if(FortuneFailChance < 0.3) {
-            int FailureRoll = (int) Math.round(Math.random() * 2);
+            int FailureRoll = (int) Math.floor(Math.random() * 3);
             ResultMessage = FailureString[FailureRoll];
         }
         else{
-            int FortuneRoll = (int) Math.round(Math.random() * 6);
+            int FortuneRoll = (int) Math.floor(Math.random() * 7);
             ResultMessage = FortuneString[FortuneRoll];
         }
-
-        int FlavorRoll = (int) Math.round(Math.random() * 2);
+        int FlavorRoll = (int) Math.floor(Math.random() * 3);
         FlavorMessage = FlavorString[FlavorRoll];
 
         TextChannel ThisChannel = event.getChannel().asTextChannel();
