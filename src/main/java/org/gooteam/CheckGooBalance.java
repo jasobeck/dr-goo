@@ -7,6 +7,9 @@ import org.gooteam.event.GooMessage;
 import org.gooteam.listener.GooMessageListener;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 public class CheckGooBalance implements GooMessageListener {
 
     public BalanceRepository balanceRepo;
@@ -20,6 +23,7 @@ public class CheckGooBalance implements GooMessageListener {
         final MessageReceivedEvent event = message.getEvent();
         User author = event.getAuthor();
         TextChannel textChannel = event.getChannel().asTextChannel();
-        textChannel.sendMessage("You have " + balanceRepo.getBalance(author.getId()) + " cm3 of goo in your pocket").queue();
+        NumberFormat formatter = new DecimalFormat("#0.000");
+        textChannel.sendMessage("You have " + formatter.format(balanceRepo.getBalance(author.getId())) + " cm3 of goo in your pocket").queue();
     }
 }
