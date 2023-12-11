@@ -1,14 +1,35 @@
 package org.gooteam;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class BalanceRepository {
     public HashMap<String, Double> balanceList = new HashMap<>();
     public BalanceRepository() throws IOException {
         populateBalanceList(balanceList);
+        registerShutdownHook();
+    }
+
+    private void registerShutdownHook() throws FileNotFoundException {
+        Runtime.getRuntime().addShutdownHook(new Thread()
+        {
+            public void run() {
+                File out = new File("balanceList.csv");
+                String[] balanceEntry = new String[balanceList.size()];
+                PrintStream fOut = null;
+                try {
+                    fOut = new PrintStream(out);
+                    System.out.println("fOut Created");
+                } catch (FileNotFoundException e) {
+                    System.out.println("exception");
+                    throw new RuntimeException(e);
+                }
+                for (Map.Entry<String, Double> entry : BalanceRepository.this.balanceList.entrySet()) {
+                    fOut.println(entry.getKey() + "," + entry.getValue());
+                }
+                fOut.close();
+            }
+        });
     }
 
     //populates balanceList HashMap from a balanceList csv Document
@@ -46,6 +67,4 @@ public class BalanceRepository {
         newBalance(userID);
         return this.balanceList.get(userID);
     }
-
-
 }
