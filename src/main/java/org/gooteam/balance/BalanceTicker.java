@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.regex.Pattern;
 
 public class BalanceTicker implements GooMessageListener {
     private static final Logger logger = LoggerFactory.getLogger(GooMessageListener.class);
@@ -47,9 +48,11 @@ public class BalanceTicker implements GooMessageListener {
     }
 
     private double computeMessageWeight(String message) {
-        // goes nuts for links
-        double lengthWeight = Math.clamp(Math.log(Math.max(message.length(), 1)), 0.1, 8.0);
-        double slimeWeight = parseSlime(message);
+        // remove all links from message
+        String urlRemove = Pattern.compile("http\\S+").matcher(message).replaceAll("");
+        logger.info("sanitized message: {}", urlRemove);
+        double lengthWeight = Math.clamp(Math.log(Math.max(urlRemove.length(), 1)), 0.1, 8.0);
+        double slimeWeight = parseSlime(urlRemove);
 
         // parse for slime words
         return BASE_GOO_WEIGHT * lengthWeight * slimeWeight;
@@ -58,6 +61,7 @@ public class BalanceTicker implements GooMessageListener {
     private double parseSlime(String message) {
         double slimeWeight = 1.0;
 
+        // splits on whitespace chars
         String[] words = message.split("\\s+");
         for (String word : words) {
             if (SLIME_STRINGS.contains(word)) {
