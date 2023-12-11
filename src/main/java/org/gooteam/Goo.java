@@ -1,5 +1,6 @@
 package org.gooteam;
 
+import org.gooteam.balance.BalanceTicker;
 import org.gooteam.listener.GooCentral;
 import org.gooteam.listener.debug.DebugMessageLogger;
 import java.io.IOException;
@@ -20,6 +21,7 @@ public class Goo {
 
         doc.registerMessageListener(PREFIX, rootCommand);
         doc.registerMessageListener(null, new DebugMessageLogger());
+        doc.registerMessageListener(null, new BalanceTicker(balanceRepo));
         doc.registerMessageListener(PREFIX, new Introduction());
         doc.registerMessageListener("hey dr goo check balance", new CheckGooBalance(balanceRepo));
         doc.registerMessageListener("die dr goo", new SecretSauce());
