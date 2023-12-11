@@ -16,9 +16,9 @@ public class FortuneTell implements GooMessageListener {
         String ResultMessage;
 
         String[] FlavorString = {
-                "*Dr Goo farts!*",
-                "*Dr Goo shids!*",
-                "*Dr Goo sharts!*",
+                "*Dr. Goo makes something spin around!*",
+                "*Dr. Goo ogles your breasts!*",
+                "*Dr. Goo consults Reddit!*",
         };
 
         String[] FortuneString = {
@@ -32,9 +32,9 @@ public class FortuneTell implements GooMessageListener {
         };
 
         String[] FailureString = {
-                "Fortune telling failed! Fuck!",
-                "Epic Fail!",
-                "EPIC FAIL!!!",
+                "*Unable to read the stars at this time!*",
+                "`ERR_GOD_NOT_RESOLVED`",
+                "*Future obscured by mass death, try again!",
         };
 
         double FortuneFailChance = Math.random();
@@ -47,11 +47,12 @@ public class FortuneTell implements GooMessageListener {
             int FortuneRoll = (int) Math.round(Math.random() * 6);
             ResultMessage = FortuneString[FortuneRoll];
         }
+
         int FlavorRoll = (int) Math.round(Math.random() * 2);
         FlavorMessage = FlavorString[FlavorRoll];
 
         TextChannel ThisChannel = event.getChannel().asTextChannel();
-        ThisChannel.sendMessage(FlavorMessage + " Your fortune:" + ResultMessage).queue();
+        ThisChannel.sendMessage(FlavorMessage + "\n\nYour fortune: " + ResultMessage).queue();
 
     }
 }
