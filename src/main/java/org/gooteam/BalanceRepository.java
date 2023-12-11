@@ -9,7 +9,6 @@ public class BalanceRepository {
         populateBalanceList(balanceList);
         registerShutdownHook();
     }
-
     private void registerShutdownHook() throws FileNotFoundException {
         Runtime.getRuntime().addShutdownHook(new Thread()
         {
@@ -31,7 +30,6 @@ public class BalanceRepository {
             }
         });
     }
-
     //populates balanceList HashMap from a balanceList csv Document
     public void populateBalanceList(HashMap<String, Double> balanceList) throws IOException {
         File balanceListFile = new File("balanceList.csv");
